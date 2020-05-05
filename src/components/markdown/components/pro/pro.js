@@ -28,7 +28,6 @@ export default {
             this.currentValue = this.value;
             this.themeName = this.theme;
             this.preview = this.isPreview;
-            this.currentValue = this.value;
             if (this.isPreview) {
                 return;
             }
@@ -45,7 +44,6 @@ export default {
                 value: this.currentValue,
                 onload: (data) => {
                     console.log(data);
-                    
                     const {doc: {height = 0}} = data;
                     this.editorScrollHeight = height;
                 },
@@ -81,6 +79,9 @@ export default {
                 } else if (e.keyCode === 8) {
                     this.listerenDelete(data);
                 }
+            });
+            editor.on('keyup', (data, e) => {
+                this.$emit('input2', data.doc.children[0].parent.children[0].lines[0].text);
             });
             editor.on('focus', () => {
                 this.lastPos = editor.getCursor();

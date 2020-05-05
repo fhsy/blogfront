@@ -68,7 +68,7 @@
                 <span @click="insertCode" class="iconfont icon-code"></span>
             </li>
              <li v-if="tools.image" name="图片">
-                <span @click="insertImage" class="iconfont icon-img"></span>
+                <span @click="chooseImage" class="iconfont icon-img"></span>
             </li>
             <li v-if="tools.notChecked" name="未完成列表">
                 <span
@@ -87,7 +87,7 @@
             </li>
            
             <li v-if="tools.uploadImage" name="本地图片">
-                <span @click="chooseImage" class="iconfont icon-upload-img"></span>
+                <span @click="insertImage" class="iconfont icon-upload-img"></span>
             </li>
             <li v-if="tools.table" name="表格">
                 <span @click="insertTable" class="iconfont icon-table"></span>
@@ -183,15 +183,14 @@
                 v-show="!preview"
                 @mouseenter="mousescrollSide('left')"
             ></div>
+            <!-- 预览 -->
             <div
                 v-show="preview ? preview : split"
                 :class="`markdown-preview ${'markdown-theme-' + themeName}`"
                 ref="preview"
                 @scroll="previewScroll"
                 @mouseenter="mousescrollSide('right')"
-            >
-                <div v-html="html" ref="previewInner"></div>
-            </div>
+            ><div v-html="html" ref="previewInner"></div></div>
         </div>
         <!--    预览图片-->
         <div :class="['preview-img', previewImgModal ? 'active' : '']">

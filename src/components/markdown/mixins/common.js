@@ -1,5 +1,6 @@
 import {saveFile} from '../utils';
 import defaultTools from '../config/tools';
+let siteinfo = require("../../../config/siteinfo");
 
 export default {
     name: 'markdown',
@@ -203,16 +204,27 @@ export default {
         },
         chooseImage() {// 选择图片
             const input = document.createElement('input');
+            let _this = this;
             input.type = 'file';
             input.accept = 'image/*';
-            input.onchange = ()=>{
-               const files = input.files;
-               if(files[0]){
-                   this.$emit('on-upload-image', files[0]);
-                   input.value = '';
-               }
-            }
             input.click();
+            input.onchange = ()=>{
+                const file = input.files[0];
+                let form = new FormData();
+                form.append("picture", file); //第一个参数是后台读取的请求key值
+                //form.append("other", "666666"); //实际业务的其他请求参数
+                let xhr = new XMLHttpRequest();
+                let action = siteinfo.siteroot + "/file/img"; //上传服务的接口地址
+                xhr.open("POST", action);
+                xhr.send(form); //发送表单数据
+                xhr.onreadystatechange = function(){
+                  if(xhr.readyState==4 && xhr.status==200){
+                    let resultObj = JSON.parse(xhr.responseText);
+                    _this.insertContent(`\n![image](${resultObj.url})`);
+                    //处理返回的数据......
+                  }
+                }
+             }
         },
         addCopyListener() {// 监听复制操作
             setTimeout(() => {
