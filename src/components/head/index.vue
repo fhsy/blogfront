@@ -14,7 +14,7 @@
             prefix-icon="el-icon-search"
             v-model="searchValue"
             class="input"
-            @input="search"
+            @keydown.enter.native="search"
           ></el-input></div
       ></el-col>
       <el-col :span="6"
@@ -32,21 +32,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      searchValue: ""
-    };
-  },
+  props:['searchValue'],
   methods: {
     search() {
-      this.$http
-        .get("/article/index_list", {
-          val: this.searchValue,
-          valType: this.searchIndex
-        })
-        .then(obj => {
-          this.list = obj.list;
-        });
+     this.$emit("keydown", this.searchValue);
     }
   }
 };

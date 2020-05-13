@@ -27,7 +27,7 @@
       >
       <ul class="list">
         <li v-for="(item, index) in cateList" :key="index">
-          <router-link to="/" @click.native="flushCom(item.cateId)">
+          <router-link to="/" @click.native="flushCom(item.cateId, 1)">
             <div class="item">
               <div class="name">{{item.cateName}}</div>
               <div class="count">{{item.count}}</div>
@@ -43,7 +43,7 @@
         >&nbsp;标签</span
       >
       <span class="tags">
-        <router-link to="/mark" v-for="(item, index) in tagsList" :key="index">
+        <router-link to="/" @click.native="flushCom(item.tagId, 2)" v-for="(item, index) in tagsList" :key="index">
           <span class="text">{{item.tagName}}</span>
         </router-link>
       </span>
@@ -71,8 +71,8 @@ export default {
     this.getTagsList();
   },
   methods: {
-    flushCom(cateId) {
-      this.$emit("click", cateId);
+    flushCom(id, type) {
+      this.$emit("click", id, type);
     },
     getInfo() {
       this.$http.get("/base/info").then(obj => {
@@ -103,7 +103,7 @@ export default {
   padding: 15px;
 }
 .top {
-  font-family: "微软雅黑";
+  
   display: flex;
   flex-direction: column;
   color: #2c3e50;

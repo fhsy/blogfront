@@ -14,9 +14,11 @@
     "axios": "^0.19.2",
     "element-ui": "^2.13.1",
     "less": "^3.10.3",
-        "less-loader": "^5.0.0",
+    "less-loader": "^5.0.0",
     "qs": "^6.9.3",
+    "text-loader": "^0.0.1",
     "vue": "^2.5.2",
+    "vue-markdown": "^2.2.4",
     "vue-meditor": "^2.1.1",
     "vue-router": "^3.0.1"
   },

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Mark from '@/view/mark'
 import Index from '@/view/index'
-import Index2 from '@/view/index2'
+import Article from '@/view/article'
 
 
 Vue.use(Router)
@@ -14,9 +14,9 @@ export default new Router({
       component: Index
     },
     {
-      path: '/index2',
-      name: 'index2',
-      component: Index2
+      path: '/article',
+      name: 'article',
+      component: Article
     },
     {
       path: '/mark',

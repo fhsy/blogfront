@@ -2,7 +2,7 @@
   <div class="index">
     <el-container>
       <el-header>
-        <Head></Head>
+        <Head :searchValue="searchValue" @keydown="search"></Head>
       </el-header>
       <el-main class="body">
         <el-row type="flex" class="row-bg" justify="space-around">
@@ -12,7 +12,7 @@
           ></el-col>
           <el-col :span="18"
             ><div class="grid-content bg-purple">
-              <List :cateId="cateId"></List></div
+              <List :cateId="cateId" :tagId="tagId" :searchValue="searchValue" ></List></div
           ></el-col>
         </el-row>
       </el-main>
@@ -25,8 +25,9 @@ import List from "@/components/list";
 import Info from "@/components/info";
 export default {
   created() {
-    let id = this.$route.query.cateId;
-    console.log("id", id);
+    if(this.$route.query.searchValue != null){
+      this.searchValue = this.$route.query.searchValue;
+    }
   },
   components: {
     Head,
@@ -35,13 +36,22 @@ export default {
   },
   data() {
     return {
-      cateId: 0
+      cateId: 0,
+      tagId: 0,
+      searchValue: ''
     }
   },
   methods: {
-    flushCom(cateId) {
-      console.log(cateId);
-      this.cateId = cateId;
+    flushCom(id, type) {
+      if(type == 1){
+        this.cateId = id;
+      }
+      if(type == 2){
+        this.tagId = id;
+      }
+    },
+    search(val){
+      this.searchValue = val;
     }
   }
 };
