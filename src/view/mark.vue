@@ -137,7 +137,9 @@ export default {
     this.getCategoryList();
     this.getTagsList();
     this.getArticleList();
+    
   },
+  
   methods: {
     /**
      * 获取文章列表

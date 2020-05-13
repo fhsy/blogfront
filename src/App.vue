@@ -1,30 +1,38 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
-}
+  name: "App"
+};
 </script>
 
 <style>
-*{
+* {
   margin: 0;
   padding: 0;
   border: 0;
 }
-#app{
+#app {
   height: 100%;
 }
-/* #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
+a {
+  text-decoration: none;
+}
+.router-link-active {
+  text-decoration: none;
+}
+.shuxian {
+  background-color: rgb(139, 139, 139);
+  height: 50px;
+  width: 1px;
+}
+.hengxian {
+  background-color: rgb(218, 218, 218);
+  height: 1px;
+  width: 100%;
+}
 </style>
