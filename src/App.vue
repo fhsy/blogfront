@@ -19,8 +19,9 @@ export default {
 #app {
   height: 100%;
 }
-*{
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+* {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 }
 a {
   text-decoration: none;
@@ -37,5 +38,9 @@ a {
   background-color: rgb(218, 218, 218);
   height: 1px;
   width: 100%;
+}
+.selectItem {
+  box-shadow: 0px 1px 8px 0px rgb(168, 168, 168) !important;
+  background-color: #303133 !important;
 }
 </style>

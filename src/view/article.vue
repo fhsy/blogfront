@@ -5,15 +5,33 @@
         <Head @keydown="search"></Head>
       </el-header>
       <el-container>
-        <el-aside width="300px">Aside</el-aside>
+        <el-aside width="300px">目录</el-aside>
         <el-main>
           <div class="body">
-              <div class="title">
-                  <span></span>
+            <div class="title">
+              <span class="til">{{ item.title }}</span>
+              <span class="hengxian"></span>
+              <div class="info">
+                <span
+                  ><i class="el-icon-time"></i>&nbsp;{{
+                    item.createTime.substring(0, 10)
+                  }}</span
+                >
+                <span><i class="el-icon-menu"></i>&nbsp;{{ item.cateName }}</span>
+                <span><i class="el-icon-collection-tag"></i>&nbsp;
+                  <span v-for="(item, index) in item.tagNames" :key="index">{{
+                    item
+                  }}</span>
+                </span>
               </div>
-              <div class="context">
-                <vue-markdown>{{ item.context }}</vue-markdown>
-              </div>
+            </div>
+            <div class="context">
+              <MarkdownPreview
+                :height="400"
+                :initialValue="item.context"
+                theme="oneDark"
+              />
+            </div>
           </div>
         </el-main>
       </el-container>
@@ -21,29 +39,40 @@
   </div>
 </template>
 <script>
-import VueMarkdown from "vue-markdown";
+import MarkdownPreview from "@/components/markdown/components/preview";
 import Head from "@/components/head";
 export default {
   name: "article",
-  created(){
-    if(this.$route.query.item != null){
-      this.item = this.$route.query.item;
+  created() {
+    let _this = this;
+    if (this.$route.query.id != null) {
+      this.$http
+        .get("/article/get", {
+          articleId: this.$route.query.id
+        })
+        .then(obj => {
+          if(obj.code != 0){
+            alert("文章不存在");
+            return false;
+          }
+          _this.item = obj.data;
+        });
     }
   },
   components: {
     Head,
-    VueMarkdown
+    MarkdownPreview
   },
   data() {
     return {
-      item:{
+      item: {
         articleId: 0,
         cateId: 0,
-        title: '',
-        context: '333',
-        cateName: '',
+        title: "文章不存在",
+        context: "文章不存在",
+        cateName: "",
         tagNames: [],
-        createTime: new Date()
+        createTime: '2020-01-01'
       }
     };
   },
@@ -64,8 +93,30 @@ export default {
   .el-header {
     padding: 0;
   }
-  .el-aside{
+  .el-aside {
     border-right: 1px solid rgb(201, 201, 201);
+  }
+  .body {
+    padding: 0px 20%;
+    .title {
+      display: flex;
+      flex-direction: column;
+      .til {
+        font-size: 32px;
+        margin-bottom: 15px;
+      }
+      .info {
+         margin-top: 10px;
+        color: #888888;
+        font-size: 12px;
+        span {
+          padding-right: 20px;
+        }
+      }
+    }
+    .context{
+      margin-top: 30px;
+    }
   }
 }
 </style>

@@ -6,7 +6,7 @@
           <span class="logo">LOGO</span>
         </div></el-col
       >
-      <el-col :span="6"><div class="grid-content bg-purple">列表</div></el-col>
+      <el-col :span="6"><router-link to="/"><div class="grid-content bg-purple" style="color: #409EFF">首页</div></router-link></el-col>
       <el-col :span="6" Valign="middle"
         ><div class="grid-content bg-purple" Valign="middle">
           <el-input

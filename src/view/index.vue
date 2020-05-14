@@ -1,12 +1,12 @@
 <template>
-  <div class="index">
+  <div class="index_index">
     <el-container>
       <el-header>
         <Head :searchValue="searchValue" @keydown="search"></Head>
       </el-header>
       <el-main class="body">
         <el-row type="flex" class="row-bg" justify="space-around">
-          <el-col :span="6"
+          <el-col :span="8"
             ><div class="grid-content bg-purple">
               <Info @click="flushCom"></Info></div
           ></el-col>
@@ -62,7 +62,7 @@ export default {
   margin-left: 0px !important;
   margin-right: 0px !important ;
 }
-.index {
+.index_index {
   width: 100%;
   .el-header {
     padding: 0;

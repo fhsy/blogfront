@@ -27,10 +27,17 @@
       >
       <ul class="list">
         <li v-for="(item, index) in cateList" :key="index">
-          <router-link to="/" @click.native="flushCom(item.cateId, 1)">
-            <div class="item">
-              <div class="name">{{item.cateName}}</div>
-              <div class="count">{{item.count}}</div>
+          <router-link
+            to="/"
+            @click.native="flushCom(item.cateId, 1, item.cateName)"
+          >
+            <div
+              :class="
+                item.cateName == selectCateValue ? 'item selectItem' : 'item'
+              "
+            >
+              <div class="name">{{ item.cateName }}</div>
+              <div class="count">{{ item.count }}</div>
             </div>
           </router-link>
         </li>
@@ -43,8 +50,18 @@
         >&nbsp;标签</span
       >
       <span class="tags">
-        <router-link to="/" @click.native="flushCom(item.tagId, 2)" v-for="(item, index) in tagsList" :key="index">
-          <span class="text">{{item.tagName}}</span>
+        <router-link
+          to="/"
+          @click.native="flushCom(item.tagId, 2, item.tagName)"
+          v-for="(item, index) in tagsList"
+          :key="index"
+        >
+          <span
+            :class="
+              item.tagName == selectTagsValue ? 'text selectItem' : 'text'
+            "
+            >{{ item.tagName }}</span
+          >
         </router-link>
       </span>
     </div>
@@ -62,7 +79,10 @@ export default {
       // 分类集合
       cateList: [],
       // 标签集合
-      tagsList: []
+      tagsList: [],
+
+      selectCateValue: "",
+      selectTagsValue: ""
     };
   },
   created() {
@@ -71,7 +91,23 @@ export default {
     this.getTagsList();
   },
   methods: {
-    flushCom(id, type) {
+    flushCom(id, type, val) {
+      if (type == 1) {
+        if (this.selectCateValue == val) {
+          id = 0;
+          this.selectCateValue = 0;
+        } else {
+          this.selectCateValue = val;
+        }
+      }
+      if (type == 2) {
+        if (this.selectTagsValue == val) {
+          id = 0;
+          this.selectTagsValue = 0;
+        } else {
+          this.selectTagsValue = val;
+        }
+      }
       this.$emit("click", id, type);
     },
     getInfo() {
@@ -103,7 +139,6 @@ export default {
   padding: 15px;
 }
 .top {
-  
   display: flex;
   flex-direction: column;
   color: #2c3e50;
@@ -120,7 +155,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     div {
       display: flex;
       flex-direction: column;
@@ -138,6 +173,7 @@ export default {
   font-size: 12px;
   padding: 10px 0;
   border-bottom: 1px solid rgb(207, 207, 207);
+
   .tags {
     display: flex;
     padding-top: 15px;
@@ -150,8 +186,8 @@ export default {
       padding: 5px;
       margin: 0 4px;
       line-height: 40px;
-      
     }
+    
   }
   .list {
     padding: 10px 0;
