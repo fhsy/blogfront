@@ -200,6 +200,9 @@ export default {
      * 选择分类
      */
     CCate() {
+      if (this.categoryValue.length == 0) {
+        return false;
+      }
       if (this.categoryValue.length == 2) {
         this.categoryValue.splice(0, 1);
       }

@@ -1,7 +1,7 @@
 <template>
   <div class="info_index">
     <!-- 头部 -->
-    <div class="top" align="center">
+    <div class="top" align="center" style="align-items: center;">
       <img
         class="img"
         src="https://fhs.faig.top/dist/img/202005121312501.jpg"
