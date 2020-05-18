@@ -212,7 +212,6 @@ export default {
                 const file = input.files[0];
                 let form = new FormData();
                 form.append("picture", file); //第一个参数是后台读取的请求key值
-                //form.append("other", "666666"); //实际业务的其他请求参数
                 let xhr = new XMLHttpRequest();
                 let action = siteinfo.siteroot + "/file/img"; //上传服务的接口地址
                 xhr.open("POST", action);

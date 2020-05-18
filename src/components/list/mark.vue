@@ -181,6 +181,9 @@ export default {
      * 贴标签
      */
     CTag() {
+      if (this.tagValue.length == 0) {
+        return false;
+      }
       let articleId = this.list[this.selectIndex].articleId;
       this.$http
         .post("/article-tag/stick", {

@@ -7,6 +7,8 @@ import Article from '@/view/article'
 
 Vue.use(Router)
 export default new Router({
+  mode: 'history', //设置为 history 模式
+  base: '/blog/', //项目访问路径
   routes: [
     {
       path: '/',
@@ -14,7 +16,7 @@ export default new Router({
       component: Index
     },
     {
-      path: '/article',
+      path: '/article/:id',
       name: 'article',
       component: Article
     },

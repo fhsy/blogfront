@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "build": "^0.1.4",
     "element-ui": "^2.13.1",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",

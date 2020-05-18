@@ -44,12 +44,12 @@ import Head from "@/components/head";
 export default {
   name: "article",
   created() {
+    console.log(this.$route.params.id);
+    
     let _this = this;
-    if (this.$route.query.id != null) {
+    if (this.$route.params.id != null) {
       this.$http
-        .get("/article/get", {
-          articleId: this.$route.query.id
-        })
+        .get(`/article/get/${this.$route.params.id}`)
         .then(obj => {
           if(obj.code != 0){
             alert("文章不存在");
