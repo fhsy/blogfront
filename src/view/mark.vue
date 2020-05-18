@@ -140,7 +140,7 @@ export default {
 }
 /* 编辑区 */
 .edit {
-  width: 1365px;
+  width: 80%;
   height: 100%;
   display: flex;
   flex-flow: column;
