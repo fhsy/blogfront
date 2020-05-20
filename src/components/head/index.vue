@@ -1,12 +1,54 @@
 <template>
   <div class="head_index">
     <el-row :gutter="20">
-      <el-col :span="6" align="center" Valign="middle"
+      <el-col :span="5" align="center" Valign="middle"
         ><div class="grid-content bg-purple" Valign="middle">
-          <span class="logo">LOGO</span>
-        </div></el-col
-      >
-      <el-col :span="6"><router-link to="/"><div class="grid-content bg-purple" style="color: #409EFF">首页</div></router-link></el-col>
+          <router-link to="/"><span class="logo">白羊</span></router-link>
+        </div></el-col>
+      <el-col :span="7">
+        <el-dropdown trigger="hover">
+          <span class="el-dropdown-link" >
+            <i class="el-icon-notebook-2"/>&nbsp;归档<i class="el-icon-caret-bottom el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item class="clearfix">
+              实战项目
+              <i class="el-icon-position"></i>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-dropdown trigger="hover" style="padding-left:20px">
+          <span class="el-dropdown-link" >
+            <i class="el-icon-ship"/>&nbsp;Contact<i class="el-icon-caret-bottom el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <span @click="See('https://cn.vuejs.org/')">
+              <el-dropdown-item class="clearfix">
+                <img src="../../assets/vue.png" style="width:12px">
+                Vue
+                <i class="el-icon-position"></i>
+              </el-dropdown-item>
+            </span>
+            <span @click="See('https://www.jianshu.com/')">
+
+              <el-dropdown-item class="clearfix">
+                <img src="../../assets/jianshu.png" style="width:12px">
+                简书
+                <i class="el-icon-position"></i>
+              </el-dropdown-item>
+            </span>
+            <span @click="See('https://element.eleme.cn/')">
+              <el-dropdown-item class="clearfix">
+                 <img src="../../assets/el.png" style="width:12px">
+                Element
+                <i class="el-icon-position"></i>
+              </el-dropdown-item>
+            </span>
+          </el-dropdown-menu>
+        </el-dropdown>
+        
+      
+      </el-col>
       <el-col :span="6" Valign="middle"
         ><div class="grid-content bg-purple" Valign="middle">
           <el-input
@@ -36,6 +78,9 @@ export default {
   methods: {
     search() {
      this.$emit("keydown", this.searchValue);
+    },
+    See(href){
+      window.open(href, '_blank');
     }
   }
 };

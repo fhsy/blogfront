@@ -12,6 +12,7 @@
           class="clearfix"
           @click.native="setIndex(key)"
           v-for="(val, key) in showList"
+          :key="key"
         >
           {{ val }}
         </el-dropdown-item>

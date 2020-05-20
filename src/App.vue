@@ -11,6 +11,19 @@ export default {
 </script>
 
 <style>
+.icon-jianshu{
+  content:icon;
+  icon:url('./assets/jianshu.png');
+}
+.icon-el{
+  content:icon;
+  icon:url('./assets/el.png');
+}
+.icon-vue{
+  content:icon;
+  icon:url('./assets/vue.png');
+}
+
 * {
   margin: 0;
   padding: 0;

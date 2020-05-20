@@ -13,7 +13,7 @@
             >
             <span><i class="el-icon-menu"></i>&nbsp;{{item.cateName}}</span>
             <span><i class="el-icon-collection-tag"></i>&nbsp;
-            <span v-for="(item, index) in item.tagNames" :key="index">{{item}}</span>
+            <span v-for="(item, index) in item.tags" :key="index">{{item.tagName}}</span>
             </span>
           </div>
         </div>
@@ -70,9 +70,8 @@ export default {
       if (this.searchValue != "") {
         data.searchValue = this.searchValue;
       }
-      this.$http.get("/article/index_list", data).then(obj => {
+      this.$http.get("/article/page", data).then(obj => {
         console.log(obj.data.records);
-        
         this.articleList = obj.data.records;
         this.total = obj.data.total;
       });

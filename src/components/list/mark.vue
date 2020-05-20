@@ -2,10 +2,10 @@
   <div>
     <!-- 操作 -->
     <div class="options">
-      <router-link to="/"
-        ><el-button type="primary">回首页</el-button></router-link
-      >
-      <el-button type="primary" @click="add">新建文章</el-button>
+      <router-link to="/">
+        <el-button type="primary" icon="el-icon-house">首页</el-button>
+      </router-link>
+      <el-button type="danger" icon="el-icon-plus" @click="add">添加</el-button>
     </div>
     <!-- 文章list -->
     <div class="text_list">
@@ -155,7 +155,7 @@ export default {
      * 获取文章列表
      */
     getArticleList() {
-      this.$http.get("/article/list").then(obj => {
+      this.$http.get("/article/list",{type: 'RD'}).then(obj => {
         this.list = obj.data;
         this.updateCommotData(0);
       });
@@ -283,8 +283,12 @@ export default {
       this.title = this.list[index].title;
       this.context = this.list[index].context;
       this.$emit("change", this.list[index]);
-      console.log(this.list[index]);
-      this.tagValue = this.list[index].tagNames;
+
+      this.tagValue = [];
+      this.list[index].tags.forEach(element => {
+        this.tagValue.push(element.tagName);
+      });
+      this.categoryValue = [];
       if (this.list[index].cateName != null) {
         this.categoryValue = [this.list[index].cateName];
       }
@@ -294,6 +298,12 @@ export default {
 </script>
 
 <style lang="less">
+.options{
+  padding: 20px;
+  border-bottom:1px solid rgb(212, 212, 212);
+  display: flex;
+  justify-content: space-evenly;
+}
 .text_warp .text_list .text ul {
   display: flex;
   flex-direction: column;
