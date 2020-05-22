@@ -1,27 +1,31 @@
 <template>
   <div id="app">
-    <router-view />
+    <router-view :IsPC="IsPC" />
   </div>
 </template>
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  data() {
+    return {
+      IsPC: this.getIsPC()
+    };
+  },
+  methods: {
+    getIsPC() {
+      if(window.screen.width > 960){
+        return true;
+      }
+      return false;
+    }
+  }
 };
 </script>
 
 <style>
-.icon-jianshu{
-  content:icon;
-  icon:url('./assets/jianshu.png');
-}
-.icon-el{
-  content:icon;
-  icon:url('./assets/el.png');
-}
-.icon-vue{
-  content:icon;
-  icon:url('./assets/vue.png');
+.pc20 {
+  padding: 0px 20% !important;
 }
 
 * {

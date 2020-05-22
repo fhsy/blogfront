@@ -2,12 +2,12 @@
   <div class="article_index">
     <el-container>
       <el-header>
-        <Head @keydown="search"></Head>
+        <Head :IsPC="$attrs.IsPC" @keydown="search"></Head>
       </el-header>
       <el-container>
-        <el-aside width="300px">目录</el-aside>
+        <el-aside width="300px" v-if="$attrs.IsPC">目录</el-aside>
         <el-main>
-          <div class="body">
+          <div :class="$attrs.IsPC ? 'body pc20' : 'body'">
             <div class="title">
               <span class="til">{{ item.title }}</span>
               <span class="hengxian"></span>
@@ -17,10 +17,13 @@
                     item.createTime.substring(0, 10)
                   }}</span
                 >
-                <span><i class="el-icon-menu"></i>&nbsp;{{ item.cateName }}</span>
-                <span><i class="el-icon-collection-tag"></i>&nbsp;
-                  <span v-for="(item, index) in item.tagNames" :key="index">{{
-                    item
+                <span
+                  ><i class="el-icon-menu"></i>&nbsp;{{ item.cateName }}</span
+                >
+                <span
+                  ><i class="el-icon-collection-tag"></i>&nbsp;
+                  <span v-for="(item, index) in item.tags" :key="index">{{
+                    item.tagName
                   }}</span>
                 </span>
               </div>
@@ -44,19 +47,23 @@ import Head from "@/components/head";
 export default {
   name: "article",
   created() {
-    console.log(this.$route.params.id);
-    
     let _this = this;
     if (this.$route.params.id != null) {
-      this.$http
-        .get(`/article/get/${this.$route.params.id}`)
-        .then(obj => {
-          if(obj.code != 0){
-            alert("文章不存在");
-            return false;
-          }
-          _this.item = obj.data;
-        });
+      this.$http.get(`/article/get/${this.$route.params.id}`).then(obj => {
+        if (obj) {
+          _this.item = obj;
+        } else {
+          _this.item = {
+            articleId: 0,
+            cateId: 0,
+            title: "文章不存在",
+            context: "文章不存在",
+            cateName: "",
+            tagNames: [],
+            createTime: "2020-01-01"
+          };
+        }
+      });
     }
   },
   components: {
@@ -68,11 +75,11 @@ export default {
       item: {
         articleId: 0,
         cateId: 0,
-        title: "文章不存在",
-        context: "文章不存在",
+        title: "加载中...",
+        context: "",
         cateName: "",
         tagNames: [],
-        createTime: '2020-01-01'
+        createTime: "2020-01-01"
       }
     };
   },
@@ -97,7 +104,6 @@ export default {
     border-right: 1px solid rgb(201, 201, 201);
   }
   .body {
-    padding: 0px 20%;
     .title {
       display: flex;
       flex-direction: column;
@@ -106,7 +112,7 @@ export default {
         margin-bottom: 15px;
       }
       .info {
-         margin-top: 10px;
+        margin-top: 10px;
         color: #888888;
         font-size: 12px;
         span {
@@ -114,7 +120,7 @@ export default {
         }
       }
     }
-    .context{
+    .context {
       margin-top: 30px;
     }
   }

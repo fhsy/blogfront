@@ -156,7 +156,7 @@ export default {
      */
     getArticleList() {
       this.$http.get("/article/list",{type: 'RD'}).then(obj => {
-        this.list = obj.data;
+        this.list = obj;
         this.updateCommotData(0);
       });
     },
@@ -165,7 +165,7 @@ export default {
      */
     getCategoryList() {
       this.$http.get("/category/list").then(obj => {
-        this.categoryList = obj.data;
+        this.categoryList = obj;
       });
     },
     /**
@@ -173,7 +173,7 @@ export default {
      */
     getTagsList() {
       this.$http.get("/tags/list").then(obj => {
-        this.tagsList = obj.data;
+        this.tagsList = obj;
       });
     },
 
@@ -216,7 +216,7 @@ export default {
           articleId,
           cateName
         })
-        .then(obj => {
+        .then(res => {
           this.$notify({
             title: "提示",
             message: "操作成功",
@@ -233,7 +233,7 @@ export default {
     },
     // 添加
     add() {
-      this.$http.post("/article/add").then(o => {
+      this.$http.post("/article/add",{context: " "}).then(o => {
         this.selectIndex = 0;
         this.getArticleList();
       });

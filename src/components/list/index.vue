@@ -71,9 +71,8 @@ export default {
         data.searchValue = this.searchValue;
       }
       this.$http.get("/article/page", data).then(obj => {
-        console.log(obj.data.records);
-        this.articleList = obj.data.records;
-        this.total = obj.data.total;
+        this.articleList = obj.records;
+        this.total = obj.total;
       });
     }
   },

@@ -111,19 +111,19 @@ export default {
       this.$emit("click", id, type);
     },
     getInfo() {
-      this.$http.get("/base/info").then(obj => {
-        this.articleConut = obj.data.articleConut;
-        this.tagsConut = obj.data.tagsConut;
+      this.$http.get("/info/info").then(obj => {
+        this.articleConut = obj.articleConut;
+        this.tagsConut = obj.tagsConut;
       });
     },
     getCateList() {
       this.$http.get("/category/class-count").then(obj => {
-        this.cateList = obj.data;
+        this.cateList = obj;
       });
     },
     getTagsList() {
       this.$http.get("/tags/list").then(obj => {
-        this.tagsList = obj.data;
+        this.tagsList = obj;
       });
     }
   }

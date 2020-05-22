@@ -5,7 +5,7 @@
         ><div class="grid-content bg-purple" Valign="middle">
           <router-link to="/"><span class="logo">白羊</span></router-link>
         </div></el-col>
-      <el-col :span="7">
+      <el-col :span="7" v-if="$attrs.IsPC">
         <el-dropdown trigger="hover">
           <span class="el-dropdown-link" >
             <i class="el-icon-notebook-2"/>&nbsp;归档<i class="el-icon-caret-bottom el-icon--right"></i>
@@ -59,7 +59,7 @@
             @keydown.enter.native="search"
           ></el-input></div
       ></el-col>
-      <el-col :span="6"
+      <el-col :span="6" v-if="$attrs.IsPC"
         ><div class="grid-content bg-purple">
           <router-link to="/mark">
             <el-button type="primary" icon="el-icon-edit" round

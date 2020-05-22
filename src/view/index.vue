@@ -2,11 +2,11 @@
   <div class="index_index">
     <el-container>
       <el-header>
-        <Head :searchValue="searchValue" @keydown="search"></Head>
+        <Head :IsPC="$attrs.IsPC" :searchValue="searchValue" @keydown="search"></Head>
       </el-header>
-      <el-main class="body">
+      <el-main :class="$attrs.IsPC?'body pc20':'body'">
         <el-row type="flex" class="row-bg" justify="space-around">
-          <el-col :span="8"
+          <el-col :span="8" v-if="$attrs.IsPC"
             ><div class="grid-content bg-purple">
               <Info @click="flushCom"></Info></div
           ></el-col>
@@ -66,9 +66,6 @@ export default {
   width: 100%;
   .el-header {
     padding: 0;
-  }
-  .body {
-    padding: 0px 20%;
   }
 }
 </style>
