@@ -3,51 +3,57 @@
     <el-row :gutter="20">
       <el-col :span="5" align="center" Valign="middle"
         ><div class="grid-content bg-purple" Valign="middle">
-          <router-link to="/"><span class="logo">白羊</span></router-link>
-        </div></el-col>
+          <router-link to="/"
+            ><span class="logo" >白羊</span></router-link
+          >
+        </div></el-col
+      >
       <el-col :span="7" v-if="$attrs.IsPC">
         <el-dropdown trigger="hover">
-          <span class="el-dropdown-link" >
-            <i class="el-icon-notebook-2"/>&nbsp;归档<i class="el-icon-caret-bottom el-icon--right"></i>
+          <span class="el-dropdown-link">
+            <i class="el-icon-notebook-2" />&nbsp;归档<i
+              class="el-icon-caret-bottom el-icon--right"
+            ></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item class="clearfix">
-              实战项目
-              <i class="el-icon-position"></i>
-            </el-dropdown-item>
+            <span @click="See('https://blog.faig.top/vue-element-admin/')">
+              <el-dropdown-item class="clearfix">
+                实战项目
+                <i class="el-icon-position"></i>
+              </el-dropdown-item>
+            </span>
           </el-dropdown-menu>
         </el-dropdown>
         <el-dropdown trigger="hover" style="padding-left:20px">
-          <span class="el-dropdown-link" >
-            <i class="el-icon-ship"/>&nbsp;Contact<i class="el-icon-caret-bottom el-icon--right"></i>
+          <span class="el-dropdown-link">
+            <i class="el-icon-ship" />&nbsp;Contact<i
+              class="el-icon-caret-bottom el-icon--right"
+            ></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <span @click="See('https://cn.vuejs.org/')">
               <el-dropdown-item class="clearfix">
-                <img src="../../assets/vue.png" style="width:12px">
+                <img src="../../assets/vue.png" style="width:12px" />
                 Vue
                 <i class="el-icon-position"></i>
               </el-dropdown-item>
             </span>
             <span @click="See('https://www.jianshu.com/')">
-
               <el-dropdown-item class="clearfix">
-                <img src="../../assets/jianshu.png" style="width:12px">
+                <img src="../../assets/jianshu.png" style="width:12px" />
                 简书
                 <i class="el-icon-position"></i>
               </el-dropdown-item>
             </span>
             <span @click="See('https://element.eleme.cn/')">
               <el-dropdown-item class="clearfix">
-                 <img src="../../assets/el.png" style="width:12px">
+                <img src="../../assets/el.png" style="width:12px" />
                 Element
                 <i class="el-icon-position"></i>
               </el-dropdown-item>
             </span>
           </el-dropdown-menu>
         </el-dropdown>
-        
-      
       </el-col>
       <el-col :span="6" Valign="middle"
         ><div class="grid-content bg-purple" Valign="middle">
@@ -74,13 +80,13 @@
 
 <script>
 export default {
-  props:['searchValue'],
+  props: ["searchValue"],
   methods: {
     search() {
-     this.$emit("keydown", this.searchValue);
+      this.$emit("keydown", this.searchValue);
     },
-    See(href){
-      window.open(href, '_blank');
+    See(href) {
+      window.open(href, "_blank");
     }
   }
 };
