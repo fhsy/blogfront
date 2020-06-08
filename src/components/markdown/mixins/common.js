@@ -218,8 +218,7 @@ export default {
                 xhr.send(form); //发送表单数据
                 xhr.onreadystatechange = function(){
                   if(xhr.readyState==4 && xhr.status==200){
-                    let resultObj = JSON.parse(xhr.responseText);
-                    _this.insertContent(`\n![image](${resultObj.url})`);
+                    _this.insertContent(`\n![image](${xhr.responseText})`);
                     //处理返回的数据......
                   }
                 }

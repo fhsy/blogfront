@@ -1,7 +1,7 @@
 <template>
   <div class="list_index">
     <div class="warp" v-for="(item, index) in articleList" :key="index">
-      <router-link :to="{path: `/article/${item.articleId}`}">
+      <router-link :to="{path:'/article', query:{id: `${item.articleId}`}}">
         <div class="item">
           <div class="title">{{ item.title }}</div>
           <span class="hengxian"></span>

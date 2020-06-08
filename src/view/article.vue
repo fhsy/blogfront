@@ -48,8 +48,8 @@ export default {
   name: "article",
   created() {
     let _this = this;
-    if (this.$route.params.id != null) {
-      this.$http.get(`/article/get/${this.$route.params.id}`).then(obj => {
+    if (this.$route.query.id != null) {
+      this.$http.get(`/article/get/${this.$route.query.id}`).then(obj => {
         if (obj) {
           _this.item = obj;
         } else {
